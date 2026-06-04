@@ -1,4 +1,4 @@
-name,faction id,unit,cost,combat,move,capacity,text abilities,unit abilities,version,exclude after,requires pok,
+name,faction id,unit,cost,combat,move,capacity,text abilities,unit abilities,version,exclude after,requires pok,alias
 Infantry I,,infantry,0.5,8,,,,,base game,,,
 Fighter I,,fighter,0.5,9,,,,,base game,,,
 Destroyer I,,destroyer,1,9,2,,,ANTI-FIGHTER BARRAGE 9(x2).,base game,,,
@@ -21,7 +21,7 @@ Dimensional Tear I,cabal,space dock,,,,,This system is a gravity rift, your ship
 Quietus,crimson,flagship,8,5(x2),1,3,"While this unit is in a system that contains an active breach, other players' units in systems with active breaches lose all of their unit abilities.",SUSTAIN DAMAGE.,thunders edge,,,
 Revenant,crimson,mech,2,6,,,"DEPLOY: During the Commit Ground Forces step of your tactical action in a system that contains an active breach, you may commit 1 mech even if you have no units in the system.",SUSTAIN DAMAGE.,thunders edge,,,
 Exile I,crimson,destroyer,1,8,2,,At the end of any player's combat in this unit's system or an adjacent system you may place 1 inactive breach in that system.,ANTI-FIGHTER BARRAGE 9(x2).,thunders edge,,,
-D.W.S. Luminous,deepwrought,flagship,8,7(x2),1,6,"This ship can move through systems that contain your units, even if other players' units are present; if it would apply +1 to its move value for each of those systems.",SUSTAIN DAMAGE.,thunders edge,,,
+D.W.S. Luminous,deepwrought,flagship,8,7(x2),1,6,"This ship can move through systems that contain your units, even if other players' units are present; if it would apply +1 to its move value for each of those systems.",SUSTAIN DAMAGE.,thunders edge,,,dws
 Eanautic,deepwrought,mech,2,6,,,When another player activates this system if this unit is coexisting you may move it and any of your infantry on its planet to a planet you control in your home system.,SUSTAIN DAMAGE. PRODUCTION 1.,thunders edge,,,
 Dynamo,empyrean,flagship,8,5(x2),1,3,After any player's unit in this system or an adjacent system uses SUSTAIN DAMAGE you may spend 2 influence to repair that unit.,SUSTAIN DAMAGE.,pok,,,
 Watcher,empyrean,mech,2,6,,,You may remove this unit from a system that contains or is adjacent to another player's units to cancel an action card played by that player.,SUSTAIN DAMAGE.,pok,,,
@@ -33,8 +33,8 @@ Wrath of Kenara,hacan,flagship,8,7(x2),1,3,After you roll a die during a space c
 Pride of Kenara,hacan,mech,2,6,,,This planet's card may be traded as part of a transaction, if you do move all of your units from this planet to another planet you control.,SUSTAIN DAMAGE.,pok,,
 J.N.S. Hylarim,jolnar,flagship,8,6(x2),1,3,"When making a combat roll for this ship, each result of 9 or 10 before applying modifiers produces 2 additional hits.",SUSTAIN DAMAGE.,base game,,,
 Shield Paling,jolnar,mech,2,6,,,Your infantry on this planet are not affected by your Fragile faction ability.,SUSTAIN DAMAGE.,pok,,,
-[0.0.1],lizix,flagship,8,5(x2),1,5,"During a space combat, hits produced by this ship and by your dreadnoughts in this system must be assigned to non-fighter ships if able.",SUSTAIN DAMAGE.,base game,,,
-Anihilator,lizix,mech,2,6,,,"While not participating in ground combat, this unit can use its BOMBARDMENT ability on planets in its system as if it were a ship.",SUSTAIN DAMAGE. BOMBARDMENT 8.,pok,,,
+[0.0.1],lizix,flagship,8,5(x2),1,5,"During a space combat, hits produced by this ship and by your dreadnoughts in this system must be assigned to non-fighter ships if able.",SUSTAIN DAMAGE.,base game,,,"""001"""
+Annihilator,lizix,mech,2,6,,,"While not participating in ground combat, this unit can use its BOMBARDMENT ability on planets in its system as if it were a ship.",SUSTAIN DAMAGE. BOMBARDMENT 8.,pok,,,
 Super Dreadnought I,lizix,dreadnought,4,5,1,2,,SUSTAIN DAMAGE. BOMBARDMENT 5.,base game,,,
 Arvicon Rex,mahact,flagship,8,5(x2),1,3,"During combat against an opponent whose command token is not in your fleet pool, apply +2 to the results of this unit's combat rolls.",SUSTAIN DAMAGE.,pok,,,
 Starlancer,mahact,mech,2,6,,,"After a player whose command token is in your fleet pool activates this system, you may spend their token from your fleet pool to end their turn; they gain that token.",SUSTAIN DAMAGE.,pok,,,
@@ -43,12 +43,12 @@ Fourth Moon,mentak,flagship,8,7(x2),1,3,Other players' ships in this system cann
 Moll Terminus,mentak,mech,2,6,,,Other players' ground forces on this planet cannot use SUSTAIN DAMAGE.,SUSTAIN DAMAGE.,pok,,,
 The Inferno,muaat,flagship,8,5(x2),1,3,ACTION: Spend 1 token from your strategy pool to place 1 cruiser in this system.,SUSTAIN DAMAGE.,base game,,,
 Ember Colossus,muaat,mech,2,6,,,"When you use your Star Forge faction ability in this system or an adjacent system, you may place 1 infantry from your reinforcements with this unit.",SUSTAIN DAMAGE.,pok,,,
-Prototype War Sun I,muaat,war sun,12,3(x3),1,6,Other players' units in this system lose the PLANETARY SHIELD ability.,SUSTAIN DAMAGE. BOMBARDMENT 3(x3).,base game,,,
+Prototype War Sun I,muaat,war sun,12,3(x3),1,6,Other players' units in this system lose the PLANETARY SHIELD ability.,SUSTAIN DAMAGE. BOMBARDMENT 3(x3).,base game,,,pws
 Matriarch,naalu,flagship,8,9(x2),1,6,"During an invasion in this system, you may commit fighters to planets as if they were ground forces. After combat return those units to the space area.",SUSTAIN DAMAGE.,base game,,,
 Iconoclast,naalu,mech,2,6,,,"During combat against an opponent who has at least 1 relic fragment, apply +2 to the results of this unit's combat rolls.",SUSTAIN DAMAGE.,pok,codex 3,,
 Iconoclast Ω,naalu,mech,2,6,,,Other players cannot use ANTI-FIGHTER BARRAGE against your units in this system.,SUSTAIN DAMAGE.,codex 3,thunders edge,,
 Iconoclast ΩΩ,naalu,mech,2,6,,,"DEPLOY: When another player gains a relic, place 1 mech on any planet you control.",SUSTAIN DAMAGE.,thunders edge,,,
-Hybrid Crystal Fighter I,naalu,fighter,0.5,8,,,,,base game,,,
+Hybrid Crystal Fighter I,naalu,fighter,0.5,8,,,,,base game,,,hcf
 Visz El Vir,nra,flagship,8,9(x2),1,4,Your mechs in this system roll 1 additional die during combat.,SUSTAIN DAMAGE.,pok,,,
 Eidolon,nra,mech,2,6(x2),,,"If this unit is in the space area of the active system at the start of a space combat, flip this card.",SUSTAIN DAMAGE.,pok,,,
 Z-Grav Eidolon,nra,mech,2,8(x2),,,"If this unit is in the space area of the active system, it is also a ship. At the end of a space battle in the active system, flip this card.",,pok,,,
@@ -122,7 +122,7 @@ Corsair,mentak,cruiser,2,6,3,2,"If the active system contains another player's n
 Saggitaria,keleres,cruiser,2,6,3,1,,SUSTAIN DAMAGE.,twilights fall,,,
 Exile,crimson,destroyer,1,8,4,,This unit can move through systems that contain other players' ships.,ANTI-FIGHTER BARRAGE 6(x3).,twilights fall,,,
 Linkship,lizards,destroyer,1,8,2,,"When this unit retreats, you may destroy 1 ship in the active system that is damaged or does not have SUSTAIN DAMAGE.",ANTI-FIGHTER BARRAGE 6(x3).,twilights fall,,,
-Strike Wing Alpha,argent,destroyer,1,7,2,1,"When this unit uses ANTI-FIGHTER BARRAGE, each result of 9 or 10 also destroys 1 of your opponent's infantry in the space area of the active system.",ANTI-FIGHTER BARRAGE 6(x3).,twilights fall,,,
+Strike Wing Alpha,argent,destroyer,1,7,2,1,"When this unit uses ANTI-FIGHTER BARRAGE, each result of 9 or 10 also destroys 1 of your opponent's infantry in the space area of the active system.",ANTI-FIGHTER BARRAGE 6(x3).,twilights fall,,,swa
 Dawncrusher,barony,dreadnought,3,5,2,1,"This unit cannot be destroyed by ""Spark"" action cards.",SUSTAIN DAMAGE. BOMBARDMENT 4.,twilights fall,,,
 Exotrireme,sardakk,dreadnought,4,4,2,1,"This unit cannot be destroyed by ""Spark"" action cards. After a round of space combat, you may destroy this unit to destroy up to 2 ships in this system.",SUSTAIN DAMAGE. BOMBARDMENT 4(x2).,twilights fall,,,
 Super-Dreadnought,lizix,dreadnought,4,5,2,2,"This unit cannot be destroyed by ""Spark"" action cards.",SUSTAIN DAMAGE. BOMBARDMENT 4.,twilights fall,,,
@@ -133,15 +133,15 @@ Echo of Ascension,nomad,flagship,,,,,"Keep this card in your play area and adjus
 Guild Agents,yssaril,infantry,0.5,7,,,"After you move this unit into a system that contains another player's units, you may look at that player's action cards and take 1 of them.",,twilights fall,,,
 Letani Warrior,arborec,infantry,0.5,7,,,,PRODUCTION 2.,twilights fall,,,
 Yin Clone,yin,infantry,0.5,7,,,"After this unit is destroyed or removed, place the unit on this card. At the start of the status phase, place each unit that is on this card on a planet you control.",,twilights fall,,,
-Eidolon Landwaster,nra,mech,,,,,Keep this card in your play area, your mechs roll 1 additional die during combat.,,twilights fall,,TRUE
-Eidolon Terminus,cabal,mech,,,,,Keep this card in your play area, the COMBAT value of your mechs is reduced by 1.,,twilights fall,,TRUE
-Valefar Prime,nekro,mech,,,,,Keep this card in your play area, the COST of your mechs is reduced by 1.,,twilights fall,,TRUE
+Eidolon Landwaster,nra,mech,,,,,Keep this card in your play area, your mechs roll 1 additional die during combat.,,twilights fall,TRUE,
+Eidolon Terminus,cabal,mech,,,,,Keep this card in your play area, the COMBAT value of your mechs is reduced by 1.,,twilights fall,TRUE,
+Valefar Prime,nekro,mech,,,,,Keep this card in your play area, the COST of your mechs is reduced by 1.,,twilights fall,TRUE,
 Hel-Titan,titans,pds,,5,,,This unit is treated as both a structure and a ground force. It cannot be transported. You may use this unit's SPACE CANNON ability against ships that are adjacent to this unit's system.,PLANETARY SHIELD. SPACE CANNON 5. SUSTAIN DAMAGE. PRODUCTION 1.,twilights fall,,,
 Justiciar Rail,winnu,pds,,,,,"You may use this unit's SPACE CANNON ability against ships that are adjacent to this unit's system. Hits produced by this unit must be assigned to non-fighter ships, if able.",PLANETARY SHIELD. SPACE CANNON 5.,twilights fall,,,
 Keeper Matrix,xxcha,pds,,,,,You may use this unit's SPACE CANNON ability against ships that are adjacent to this unit's system.,PLANETARY SHIELD. SPACE CANNON 5(x2).,twilights fall,,,
 Floating Factories,saar,space dock,,,2,5,"This unit is placed in a space area instead of on a planet. This unit can move and retreat as if it were a ship. If this unit is blockaded, it is destroyed.",PRODUCTION 7,twilights fall,,,
 Helios Entity,bastion,space dock,,,,,This unit's PRODUCTION value is equal to 2 more than the resource value of this planet. The resource value of this planet is increased by 2. Up to 3 fighters in this system do not count against your ships' capacity.,PRODUCTION X.,twilights fall,,,
 Production Biomes,hacan,space dock,,,,,"Up to 3 fighters in this system do not count against your ships' capacity. When this unit uses PRODUCTION, you may spend 1 token from your strategy pool to gain 4 trade goods and choose another player to gain 2 trade goods.",PRODUCTION 9.,twilights fall,,,
-Prototype War Sun,muaat,war sun,12,3(x3),2,6,Other players' units in this system lose PLANETARY SHIELD. This unit and other units moving at the same time can move into and through supernovas.,SUSTAIN DAMAGE. BOMBARDMENT 3(x3).,twilights fall,,,
+Prototype War Sun,muaat,war sun,12,3(x3),2,6,Other players' units in this system lose PLANETARY SHIELD. This unit and other units moving at the same time can move into and through supernovas.,SUSTAIN DAMAGE. BOMBARDMENT 3(x3).,twilights fall,,,pws
 "The Dragon, Freed",obsidian,war sun,12,3(x3),2,6,"While you own this card, you can only have 1 war sun. When this unit uses BOMBARDMENT, it uses it against each planet in its system and each adjacent system, even yours, ignoring PLANETARY SHIELD.",SUSTAIN DAMAGE. BOMBARDMENT 3(x3).,twilights fall,,,
 University War Sun,jolnar,war sun,10,4(x3),3,6,Other players' units in this system lose PLANETARY SHIELD.,SUSTAIN DAMAGE. BOMBARDMENT 4(x3).,twilights fall,,,

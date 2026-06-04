@@ -171,6 +171,7 @@ export interface Technology {
   factionName?: string
   excludeAfter?: string
   requiresPok?: boolean
+  alias?: string
 }
 
 /**
@@ -212,6 +213,7 @@ export interface Unit {
   factionName?: string
   excludeAfter?: string
   requiresPok?: boolean
+  alias?: string
 }
 
 /** Combined item for search/display with searchText for Fuse. */

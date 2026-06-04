@@ -310,6 +310,7 @@ export async function loadTechnologies(): Promise<Technology[]> {
     version: row.version ?? '',
     excludeAfter: (row['exclude after'] ?? '').trim() || undefined,
     requiresPok: (row['requires pok'] ?? '').toLowerCase() === 'true',
+    alias: (row.alias ?? '').trim() || undefined,
   }))
 }
 
@@ -360,6 +361,7 @@ export async function loadUnits(): Promise<Unit[]> {
     version: row.version ?? '',
     excludeAfter: (row['exclude after'] ?? '').trim() || undefined,
     requiresPok: (row['requires pok'] ?? '').toLowerCase() === 'true',
+    alias: (row.alias ?? '').trim() || undefined,
   }))
 }
 
@@ -475,7 +477,7 @@ export async function loadAllCards(): Promise<CardItem[]> {
     ...c,
     factionName: c.factionId ? (factionNames.get(c.factionId) ?? undefined) : undefined,
     type: 'technology',
-    searchText: [CATEGORY_SEARCH_TERMS.technology, c.name, c.factionId, factionNames.get(c.factionId), c.techType, c.unit, c.prerequisites, c.effect, c.version].filter(Boolean).join(' '),
+    searchText: [CATEGORY_SEARCH_TERMS.technology, c.name, c.factionId, factionNames.get(c.factionId), c.techType, c.unit, c.prerequisites, c.effect, c.version, c.alias].filter(Boolean).join(' '),
   }))
   const galacticEventItems: CardItem[] = galacticEvents.map((c) => ({
     ...c,
@@ -504,6 +506,7 @@ export async function loadAllCards(): Promise<CardItem[]> {
       c.textAbilities,
       c.unitAbilities,
       c.version,
+      c.alias,
     ].filter(Boolean).join(' '),
   }))
 
