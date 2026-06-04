@@ -185,12 +185,13 @@ export interface GalacticEvent {
 }
 
 /**
- * Plot from CSV. Columns: name, faction ids, effect, version.
+ * Faction card from CSV. Columns: name, faction ids, type, effect, version.
  * factionIds is parsed from e.g. "[firmament,obsidian]".
  */
-export interface Plot {
+export interface FactionCard {
   name: string
   factionIds: string[]
+  cardType: string
   effect: string
   version: string
 }
@@ -231,5 +232,5 @@ export type CardItem =
   | (Breakthrough & { type: 'breakthrough'; searchText: string })
   | (Technology & { type: 'technology'; searchText: string })
   | (GalacticEvent & { type: 'galactic_event'; searchText: string })
-  | (Plot & { type: 'plot'; searchText: string })
+  | (FactionCard & { type: 'faction_card'; searchText: string })
   | (Unit & { type: 'unit'; searchText: string })

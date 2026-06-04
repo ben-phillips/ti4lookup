@@ -1,5 +1,5 @@
 import Papa from 'papaparse'
-import type { ActionCard, StrategyCard, Agenda, PublicObjective, SecretObjective, LegendaryPlanet, Exploration, FactionAbility, FactionLeader, PromissoryNote, Breakthrough, Technology, GalacticEvent, Plot, Unit, CardItem } from '../types'
+import type { ActionCard, StrategyCard, Agenda, PublicObjective, SecretObjective, LegendaryPlanet, Exploration, FactionAbility, FactionLeader, PromissoryNote, Breakthrough, Technology, GalacticEvent, FactionCard, Unit, CardItem } from '../types'
 
 const ACTION_CSV_URL = '/action_cards.csv'
 const STRATEGY_CSV_URL = '/strategy_cards.csv'
@@ -14,7 +14,7 @@ const BREAKTHROUGHS_CSV_URL = '/breakthroughs.csv'
 const TECHNOLOGIES_CSV_URL = '/technologies.csv'
 const FACTIONS_CSV_URL = '/factions.csv'
 const GALACTIC_EVENTS_CSV_URL = '/galactic_events.csv'
-const PLOTS_CSV_URL = '/plots.csv'
+const FACTION_CARDS_CSV_URL = '/faction_cards.csv'
 const UNITS_CSV_URL = '/units.csv'
 
 /** Category names included in searchText so users can search by category (e.g. "galactic event", "action card"). */
@@ -33,7 +33,7 @@ const CATEGORY_SEARCH_TERMS: Record<string, string> = {
   breakthrough: 'breakthrough',
   technology: 'technology',
   galactic_event: 'galactic event',
-  plot: 'plot',
+  faction_card: 'faction card',
   unit: 'unit',
 }
 
@@ -333,12 +333,13 @@ export async function loadGalacticEvents(): Promise<GalacticEvent[]> {
 }
 
 /**
- * Fetches and parses plots CSV. Columns: name, faction ids, effect, version.
+ * Fetches and parses faction cards CSV. Columns: name, faction ids, type, effect, version.
  */
-export async function loadPlots(): Promise<Plot[]> {
-  return parseCsv(PLOTS_CSV_URL, (row) => ({
+export async function loadFactionCards(): Promise<FactionCard[]> {
+  return parseCsv(FACTION_CARDS_CSV_URL, (row) => ({
     name: row.name ?? '',
     factionIds: parseFactionIds(row['faction ids'] ?? ''),
+    cardType: row.type ?? '',
     effect: row.effect ?? '',
     version: row.version ?? '',
   }))
@@ -366,10 +367,10 @@ export async function loadUnits(): Promise<Unit[]> {
 }
 
 /**
- * Loads action cards, strategy cards, agendas, objectives, legendary planets, exploration, faction abilities, faction leaders, promissory notes, breakthroughs, technologies, galactic events, plots, units; returns a combined CardItem[] for search/display.
+ * Loads action cards, strategy cards, agendas, objectives, legendary planets, exploration, faction abilities, faction leaders, promissory notes, breakthroughs, technologies, galactic events, faction cards, units; returns a combined CardItem[] for search/display.
  */
 export async function loadAllCards(): Promise<CardItem[]> {
-  const [actionCards, strategyCards, agendas, objectives, legendaryPlanets, exploration, factionAbilities, factionLeaders, promissoryNotes, breakthroughs, technologies, galacticEvents, plots, units, factionNames] = await Promise.all([
+  const [actionCards, strategyCards, agendas, objectives, legendaryPlanets, exploration, factionAbilities, factionLeaders, promissoryNotes, breakthroughs, technologies, galacticEvents, factionCards, units, factionNames] = await Promise.all([
     loadActionCards(),
     loadStrategyCards(),
     loadAgendas(),
@@ -382,7 +383,7 @@ export async function loadAllCards(): Promise<CardItem[]> {
     loadBreakthroughs(),
     loadTechnologies(),
     loadGalacticEvents(),
-    loadPlots(),
+    loadFactionCards(),
     loadUnits(),
     loadFactionNames(),
   ])
@@ -484,10 +485,10 @@ export async function loadAllCards(): Promise<CardItem[]> {
     type: 'galactic_event',
     searchText: [CATEGORY_SEARCH_TERMS.galactic_event, c.name, c.effect, c.version].filter(Boolean).join(' '),
   }))
-  const plotItems: CardItem[] = plots.map((c) => ({
+  const factionCardItems: CardItem[] = factionCards.map((c) => ({
     ...c,
-    type: 'plot',
-    searchText: [CATEGORY_SEARCH_TERMS.plot, c.name, c.factionIds.join(' '), c.effect, c.version].filter(Boolean).join(' '),
+    type: 'faction_card',
+    searchText: [CATEGORY_SEARCH_TERMS.faction_card, c.name, c.factionIds.join(' '), c.cardType, c.effect, c.version].filter(Boolean).join(' '),
   }))
   const unitItems: CardItem[] = units.map((c) => ({
     ...c,
@@ -524,7 +525,7 @@ export async function loadAllCards(): Promise<CardItem[]> {
     ...breakthroughItems,
     ...technologyItems,
     ...galacticEventItems,
-    ...plotItems,
+    ...factionCardItems,
     ...unitItems,
   ]
 }

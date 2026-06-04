@@ -123,8 +123,9 @@ function getCardCopyText(card: CardItem): string {
   if (card.type === 'galactic_event') {
     return joinSections(card.name, card.version, card.effect, footer)
   }
-  if (card.type === 'plot') {
-    return joinSections(card.name, card.version, card.effect, footer)
+  if (card.type === 'faction_card') {
+    const meta = [card.cardType, card.version].filter(Boolean).join(' · ')
+    return joinSections(card.name, meta, card.effect, footer)
   }
   if (card.type === 'unit') {
     const stats = getUnitStatsHeader(card)
@@ -186,7 +187,7 @@ const CATEGORY_LABELS: Record<CardItem['type'], string> = {
   breakthrough: 'Breakthroughs',
   technology: 'Technologies',
   galactic_event: 'Galactic Events',
-  plot: 'Plots',
+  faction_card: 'Faction Cards',
   unit: 'Units',
 }
 
@@ -230,7 +231,7 @@ function getCardImages(card: CardItem): string[] {
     const tech = card.technology?.toLowerCase()
     if (tech && TECH_TYPE_IDS.has(tech)) ids.push(tech)
   }
-  if (card.type === 'plot' && card.factionIds?.length) {
+  if (card.type === 'faction_card' && card.factionIds?.length) {
     ids.push(...card.factionIds)
   }
   if (card.type === 'unit' && card.factionId) {
@@ -575,13 +576,14 @@ export function ResultRow({ card }: ResultRowProps) {
     )
   }
 
-  if (card.type === 'plot') {
+  if (card.type === 'faction_card') {
+    const meta = [card.cardType, card.version].filter(Boolean).join(' · ')
     return (
-      <article className="result-row result-row--plot" style={bgStyle}>
+      <article className="result-row result-row--faction-card" style={bgStyle}>
         <header className="result-row__header">
           <div className="result-row__header-content">
             <span className="result-row__name">{card.name}</span>
-            <span className="result-row__meta">{card.version}</span>
+            {meta ? <span className="result-row__meta">{meta}</span> : null}
           </div>
           <CopyButton card={card} />
         </header>

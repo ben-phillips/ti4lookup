@@ -8,7 +8,7 @@ const DEBOUNCE_MS = 50
 export type CardType =
   | 'action' | 'agenda' | 'strategy' | 'public_objective' | 'secret_objective' | 'legendary_planet' | 'exploration' | 'relic'
   | 'faction_ability' | 'faction_leader' | 'promissory_note' | 'promissory_note_general' | 'promissory_note_faction'
-  | 'breakthrough' | 'technology' | 'technology_general' | 'technology_faction' | 'galactic_event' | 'plot'
+  | 'breakthrough' | 'technology' | 'technology_general' | 'technology_faction' | 'galactic_event' | 'faction_card'
   | 'unit' | 'unit_general' | 'unit_faction'
 
 /**
@@ -193,7 +193,7 @@ export function partitionByType(cards: CardItem[]): {
   technology_general: CardItem[]
   technology_faction: CardItem[]
   galactic_event: CardItem[]
-  plot: CardItem[]
+  faction_card: CardItem[]
   unit_general: CardItem[]
   unit_faction: CardItem[]
 } {
@@ -216,11 +216,11 @@ export function partitionByType(cards: CardItem[]): {
   const technology_general = sortByTechnology(techCards.filter((c) => !(c.factionId ?? '').trim()))
   const technology_faction = sortByTechnologyFaction(techCards.filter((c) => (c.factionId ?? '').trim() !== ''))
   const galactic_event = sortByName(cards.filter((c) => c.type === 'galactic_event'))
-  const plot = sortByName(cards.filter((c) => c.type === 'plot'))
+  const faction_card = sortByName(cards.filter((c) => c.type === 'faction_card'))
   const unitCards = cards.filter((c) => c.type === 'unit')
   const unit_general = sortByUnitGeneral(unitCards.filter((c) => !(c.factionId ?? '').trim()))
   const unit_faction = sortByUnitFaction(unitCards.filter((c) => (c.factionId ?? '').trim() !== ''))
-  return { action, agenda, strategy, public_objective, secret_objective, legendary_planet, exploration, relic, faction_ability, faction_leader, promissory_note_general, promissory_note_faction, breakthrough, technology_general, technology_faction, galactic_event, plot, unit_general, unit_faction }
+  return { action, agenda, strategy, public_objective, secret_objective, legendary_planet, exploration, relic, faction_ability, faction_leader, promissory_note_general, promissory_note_faction, breakthrough, technology_general, technology_faction, galactic_event, faction_card, unit_general, unit_faction }
 }
 
 function filterByType(cards: CardItem[], type: CardType): CardItem[] {
