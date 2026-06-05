@@ -27,7 +27,7 @@ A service worker precaches the app shell (HTML, JS, CSS), all CSVs, and images. 
 | [legendary_planets.csv](client/public/legendary_planets.csv) | Legendary planets |
 | [objectives.csv](client/public/objectives.csv) | Public & secret objectives |
 | [planet_traits.csv](client/public/planet_traits.csv) | Planet traits |
-| [plots.csv](client/public/plots.csv) | Plot cards |
+| [faction_cards.csv](client/public/faction_cards.csv) | Faction cards (Plots & Oceans) |
 | [promissory_notes.csv](client/public/promissory_notes.csv) | Promissory notes |
 | [strategy_cards.csv](client/public/strategy_cards.csv) | Strategy cards |
 | [tech_types.csv](client/public/tech_types.csv) | Tech type metadata |
