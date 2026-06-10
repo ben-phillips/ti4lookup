@@ -191,6 +191,7 @@ export interface GalacticEvent {
 export interface FactionCard {
   name: string
   factionIds: string[]
+  factionName?: string
   cardType: string
   effect: string
   version: string

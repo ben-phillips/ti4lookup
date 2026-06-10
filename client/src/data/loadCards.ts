@@ -487,6 +487,7 @@ export async function loadAllCards(): Promise<CardItem[]> {
   }))
   const factionCardItems: CardItem[] = factionCards.map((c) => ({
     ...c,
+    factionName: c.factionIds.length ? c.factionIds.map((id) => factionNames.get(id) ?? id).join('/') : undefined,
     type: 'faction_card',
     searchText: [CATEGORY_SEARCH_TERMS.faction_card, c.name, c.factionIds.join(' '), c.cardType, c.effect, c.version].filter(Boolean).join(' '),
   }))
