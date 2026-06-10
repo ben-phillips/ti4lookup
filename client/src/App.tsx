@@ -142,7 +142,7 @@ export function App() {
     if (factionFilter) {
       result = result.filter((card) => {
         if ('factionId' in card && card.factionId === factionFilter) return true
-        if (card.type === 'plot' && 'factionIds' in card && card.factionIds?.includes(factionFilter)) return true
+        if (card.type === 'faction_card' && 'factionIds' in card && card.factionIds?.includes(factionFilter)) return true
         if (card.type === 'legendary_planet' && 'factionId' in card && card.factionId === factionFilter) return true
         return false
       })
@@ -204,7 +204,7 @@ export function App() {
     }
     if (expansions.has('twilightsFall')) {
       result = result.filter((card) => {
-        if (card.type === 'plot') return false
+        if (card.type === 'faction_card') return false
         if ('excludeInTwilightsFall' in card && card.excludeInTwilightsFall) return false
         if (card.type === 'galactic_event') return false
         if (card.type === 'action' && card.version.toLowerCase() !== 'twilights fall') return false

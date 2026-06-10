@@ -211,10 +211,10 @@ export function SearchView({
                 <ResultsList cards={partitioned.legendary_planet} />
               </section>
             )}
-            {partitioned.plot.length > 0 && (
-              <section className="results-section" aria-label="Plots">
-                <h2 className="section-title">Plots</h2>
-                <ResultsList cards={partitioned.plot} />
+            {partitioned.faction_card.length > 0 && (
+              <section className="results-section" aria-label="Faction Cards">
+                <h2 className="section-title">Faction Cards</h2>
+                <ResultsList cards={partitioned.faction_card} />
               </section>
             )}
             {results.length === 0 && (
@@ -394,10 +394,10 @@ export function SearchView({
                 <ResultsList cards={partitioned.galactic_event} />
               </section>
             )}
-            {partitioned.plot.length > 0 && (
-              <section className="results-section" aria-label="Plots">
-                <h2 className="section-title">Plots</h2>
-                <ResultsList cards={partitioned.plot} />
+            {partitioned.faction_card.length > 0 && (
+              <section className="results-section" aria-label="Faction Cards">
+                <h2 className="section-title">Faction Cards</h2>
+                <ResultsList cards={partitioned.faction_card} />
               </section>
             )}
             {results.length === 0 && (
