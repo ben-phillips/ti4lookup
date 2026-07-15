@@ -5,6 +5,11 @@ import type { CardItem } from '../types'
 const MAX_RESULTS = 50
 const DEBOUNCE_MS = 50
 
+/** Treat keyboard-friendly backticks and apostrophes as the same character in searches. */
+function normalizeApostrophes(value: string): string {
+  return value.replace(/[`']/g, "'")
+}
+
 export type CardType =
   | 'action' | 'agenda' | 'strategy' | 'public_objective' | 'secret_objective' | 'legendary_planet' | 'exploration' | 'relic'
   | 'faction_ability' | 'faction_leader' | 'promissory_note' | 'promissory_note_general' | 'promissory_note_faction'
@@ -16,6 +21,7 @@ export type CardType =
  * ignoreLocation: true so multi-word queries (e.g. "victory point") match when words appear anywhere in the text.
  * threshold: 0.2 — stricter than default; only closer matches pass (0 = exact, 1 = anything).
  * useExtendedSearch: true so whitespace acts as AND (e.g. "jolnar hero" only returns cards matching both terms, with the best match on top).
+ * getFn normalizes apostrophes in the indexed text, matching the equivalent normalized query.
  */
 function createFuse(cards: CardItem[]): Fuse<CardItem> {
   return new Fuse(cards, {
@@ -26,6 +32,11 @@ function createFuse(cards: CardItem[]): Fuse<CardItem> {
     threshold: 0.2,
     ignoreLocation: true,
     useExtendedSearch: true,
+    getFn: (card, path) => {
+      const key = Array.isArray(path) ? path.join('.') : path
+      const value = (card as unknown as Record<string, unknown>)[key]
+      return typeof value === 'string' ? normalizeApostrophes(value) : ''
+    },
   })
 }
 
@@ -288,7 +299,7 @@ export function useFuseSearch(cards: CardItem[], options: UseFuseSearchOptions =
   }, [filteredCards, typeFilter])
 
   const results = useMemo(() => {
-    const q = debouncedQuery.trim()
+    const q = normalizeApostrophes(debouncedQuery.trim())
     if (q === '') return allSorted
     const hits = fuse.search(q, { limit })
     const items = hits.map((h) => h.item)
