@@ -5,9 +5,11 @@ import type { CardItem } from '../types'
 const MAX_RESULTS = 50
 const DEBOUNCE_MS = 50
 
-/** Treat keyboard-friendly backticks and apostrophes as the same character in searches. */
+/** Treat common apostrophe, quote, and prime variants as the same character in searches. */
 function normalizeApostrophes(value: string): string {
-  return value.replace(/[`']/g, "'")
+  return value
+    .normalize('NFKC')
+    .replace(/['`\u00B4\u02B9\u02BB\u02BC\u2018\u2019\u201B\u2032\u2035]/g, "'")
 }
 
 export type CardType =
