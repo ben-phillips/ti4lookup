@@ -226,7 +226,7 @@ export function SearchView({
                 {factionFilterName}
               </h2>
             )}
-            <ProgressiveSections sections={factionSections} resetKey={factionFilter ?? ''} />
+            <ProgressiveSections key={factionFilter ?? ''} sections={factionSections} />
             {results.length === 0 && (
               <p className="results-message">No cards found for this faction.</p>
             )}
@@ -234,7 +234,7 @@ export function SearchView({
         )}
         {hasQuery && (
           <div className="search-results-partitioned">
-            <ProgressiveSections sections={querySections} resetKey={debouncedQuery} />
+            <ProgressiveSections key={debouncedQuery} sections={querySections} />
             {results.length === 0 && (
               <p className="results-message">No results found.</p>
             )}

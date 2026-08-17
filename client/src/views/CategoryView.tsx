@@ -253,7 +253,7 @@ export function CategoryView({ cards, category, onBack, isTwilightsFall }: Categ
       </div>
       <main id="main-content" className="category-view__main">
         <h2 className="section-title">{CATEGORY_LABELS[category]}</h2>
-        <ProgressiveSections sections={sections} resetKey={`${category}:${debouncedQuery}`} />
+        <ProgressiveSections key={`${category}:${debouncedQuery}`} sections={sections} />
         {results.length === 0 && (
           <p className="results-message">{emptyMessage}</p>
         )}

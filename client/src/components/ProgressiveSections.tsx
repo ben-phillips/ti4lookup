@@ -22,8 +22,6 @@ export interface ResultSection {
 interface ProgressiveSectionsProps {
   /** Sections in display order. */
   sections: ResultSection[]
-  /** Reveal window resets to the initial batch whenever this changes (e.g. the query). */
-  resetKey: string
   /** Rows mounted on first render. */
   initialCount?: number
   /** Rows added each time the sentinel scrolls into view. */
@@ -32,17 +30,6 @@ interface ProgressiveSectionsProps {
 
 const DEFAULT_INITIAL = 8
 const DEFAULT_BATCH = 8
-
-/** Nearest scrollable ancestor, used as the IntersectionObserver root so prefetch works inside a scroll container (not just the window). */
-function getScrollParent(node: HTMLElement | null): HTMLElement | null {
-  let el = node?.parentElement ?? null
-  while (el) {
-    const overflowY = getComputedStyle(el).overflowY
-    if (overflowY === 'auto' || overflowY === 'scroll') return el
-    el = el.parentElement
-  }
-  return null
-}
 
 /**
  * Renders a sectioned list of result rows, but only mounts the first N rows and
@@ -56,21 +43,11 @@ function getScrollParent(node: HTMLElement | null): HTMLElement | null {
  */
 export function ProgressiveSections({
   sections,
-  resetKey,
   initialCount = DEFAULT_INITIAL,
   batchSize = DEFAULT_BATCH,
 }: ProgressiveSectionsProps) {
   const [visibleCount, setVisibleCount] = useState(initialCount)
   const sentinelRef = useRef<HTMLDivElement | null>(null)
-
-  // Collapse back to the first batch when the query changes. Done during render
-  // (not in an effect) so the new results mount at `initialCount` immediately,
-  // rather than briefly mounting the previous — possibly large — visible count.
-  const prevResetKey = useRef(resetKey)
-  if (prevResetKey.current !== resetKey) {
-    prevResetKey.current = resetKey
-    setVisibleCount(initialCount)
-  }
 
   const totalRows = sections.reduce(
     (sum, s) => sum + (s.leadNode ? 1 : 0) + s.groups.reduce((g, grp) => g + grp.cards.length, 0),
@@ -89,7 +66,7 @@ export function ProgressiveSections({
       (entries) => {
         if (entries[0].isIntersecting) setVisibleCount((c) => c + batchSize)
       },
-      { root: getScrollParent(el), rootMargin: '800px' }
+      { rootMargin: '800px' }
     )
     observer.observe(el)
     return () => observer.disconnect()
